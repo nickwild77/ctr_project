@@ -1,4 +1,4 @@
 ['remote "s3"']
-    url = s3://s3-ctr-testbucket
+    url = s3://s3-ctr-testbucket/test
     endpointurl = https://hb.ru-msk.vkcs.cloud
     region = ru-msk
