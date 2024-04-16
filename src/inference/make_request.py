@@ -1,6 +1,8 @@
 import logging
+import os
 import sys
 from time import sleep
+import pathlib
 import numpy as np
 import requests
 
@@ -16,7 +18,8 @@ logger.setLevel(logging.INFO)
 logger.addHandler(handler)
 
 if __name__ == "__main__":
-    config_path = "configs/train_config.yaml"
+    home_dir = pathlib.Path.home()
+    config_path = str(home_dir / "ctr_project" / "configs" / "train_config.yaml")
     training_pipeline_params: TrainingPipelineParams = read_training_pipeline_params(
         config_path
     )
