@@ -54,4 +54,6 @@ Project Organization
 
 --------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
+###Pull docker image: `docker pull nickwild77/ctr_project_inference:v1`
+###Docker hub: https://hub.docker.com/repository/docker/nickwild77/ctr_project_inference
