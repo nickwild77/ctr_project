@@ -1,7 +1,7 @@
 ctr_project
 ==============================
 
-A short description of the project.
+Click-Through Rate Prediction app based on dataset from kaggle competition.
 
 Project Organization
 ------------
@@ -55,5 +55,5 @@ Project Organization
 --------
 
 
-###Pull docker image: `docker pull nickwild77/ctr_project_inference:v1`
-###Docker hub: https://hub.docker.com/repository/docker/nickwild77/ctr_project_inference
+### Pull docker image: `docker pull nickwild77/ctr_project_inference:v1`
+### Docker hub: https://hub.docker.com/repository/docker/nickwild77/ctr_project_inference
