@@ -7,7 +7,7 @@ WORKDIR /ctr_app
 COPY requirements.txt .
 
 # Устанавливаем зависимости
-RUN pip install --user --timeout 1000 -r requirements.txt
+RUN pip install --timeout 1000 -r requirements.txt
 
 # Финальный этап
 FROM python:3.9-slim
