@@ -3,22 +3,23 @@ FROM python:3.9-slim AS builder
 
 WORKDIR /ctr_app
 
-# Устанавливаем системные зависимости (если нужны)
-RUN apt-get update && apt-get install -y --no-install-recommends nano && \
+# Устанавливаем системные зависимости для сборки
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential gcc libpq-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Копируем файл зависимостей отдельно для кэширования
+# Копируем файл зависимостей
 COPY requirements.txt .
 
 # Устанавливаем зависимости в локальную папку
-RUN pip install --no-cache-dir --user -r requirements.txt
+RUN python -m pip install --no-cache-dir --user -r requirements.txt
 
 # ====== Этап 2: Финальный контейнер ======
 FROM python:3.9-slim
 
 WORKDIR /ctr_app
 
-# Копируем только установленные зависимости из builder
+# Копируем зависимости
 COPY --from=builder /root/.local /root/.local
 
 # Добавляем локальные библиотеки в PATH
