@@ -1,28 +1,35 @@
 # Этап сборки
-FROM python:3.9-slim as builder
+FROM python:3.9-slim AS builder
 
 WORKDIR /ctr_app
 
-# Копируем только requirements.txt для кэширования слоя
+# Копируем только файл зависимостей для кэширования слоя
 COPY requirements.txt .
 
-# Устанавливаем зависимости
-RUN pip install --timeout 1000 -r requirements.txt
+# Устанавливаем зависимости с кэшированием
+RUN --mount=type=cache,target=/root/.cache/pip \
+    python -m pip install --no-cache-dir --upgrade pip && \
+    python -m pip install --no-cache-dir --user -r requirements.txt
 
 # Финальный этап
 FROM python:3.9-slim
 
 WORKDIR /ctr_app
 
-# Копируем установленные зависимости из этапа сборки
+# Копируем зависимости из builder
 COPY --from=builder /root/.local /root/.local
-COPY . .
 
-# Убедимся, что скрипты в .local доступны в PATH
+# Убедимся, что локальные пакеты доступны в PATH
 ENV PATH=/root/.local/bin:$PATH
 
-# Указываем порт, который будет использоваться
+# Копируем приложение
+COPY . .
+
+# Открываем порт
 EXPOSE 8000
 
+# Используем ENTRYPOINT для удобства
+ENTRYPOINT ["uvicorn", "app:app"]
+
 # Запускаем приложение
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["--host", "0.0.0.0", "--port", "8000"]
