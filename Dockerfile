@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 
 # Устанавливаем зависимости в локальную папку
-RUN python -m pip install --no-cache-dir --user -r requirements.txt
+RUN pip install --no-cache-dir --user -r requirements.txt
 
 # ====== Этап 2: Финальный контейнер ======
 FROM python:3.9-slim
