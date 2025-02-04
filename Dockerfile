@@ -1,35 +1,31 @@
-# ====== Этап 1: Сборка зависимостей ======
-FROM python:3.9-slim AS builder
+# Stage 1: Build stage
+FROM python:3.9-slim as build
+
+# Устанавливаем зависимости для сборки
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    nano \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /ctr_app
 
-# Устанавливаем системные зависимости для сборки
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential gcc libpq-dev && \
-    rm -rf /var/lib/apt/lists/*
-
-# Копируем файл зависимостей
+# Копируем только файл зависимостей сначала, чтобы использовать кеширование слоев
 COPY requirements.txt .
 
-# Устанавливаем зависимости в локальную папку
-RUN pip install --no-cache-dir --user -r requirements.txt
+# Устанавливаем зависимости
+RUN pip install --no-cache-dir --timeout 1000 -r requirements.txt
 
-# ====== Этап 2: Финальный контейнер ======
+# Stage 2: Final stage
 FROM python:3.9-slim
+
+# Устанавливаем минимальные зависимости (без build-утилит)
+RUN apt-get update && apt-get install -y --no-install-recommends nano \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /ctr_app
 
-# Копируем зависимости
-COPY --from=builder /root/.local /root/.local
-
-# Добавляем локальные библиотеки в PATH
-ENV PATH=/root/.local/bin:$PATH
-
-# Копируем приложение
-COPY . .
-
-# Открываем порт
-EXPOSE 8000
+# Копируем только нужные файлы из build-stage
+COPY --from=build /ctr_app /ctr_app
 
 # Запуск приложения
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
