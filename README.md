@@ -1,4 +1,4 @@
-Click-Through Rate (CTR) Prediction App
+# Click-Through Rate (CTR) Prediction App
 
 Проект представляет собой инструмент для анализа и прогнозирования Click-Through Rate (CTR) 
 — показателя кликабельности, который широко используется в digital-маркетинге, рекламе и аналитике. 
