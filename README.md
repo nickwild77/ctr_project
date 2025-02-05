@@ -68,4 +68,6 @@ ctr_project/
 └── README.md                # Описание проекта
 ```
 ###  Docker image: 
-`docker pull nickwild77/ctr_project_inference:main`
+```
+docker pull nickwild77/ctr_project_inference:main
+```
