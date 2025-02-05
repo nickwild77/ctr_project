@@ -45,7 +45,7 @@ python train_pipeline.py --configs configs/train_config.yaml
 pytest
 ```
 
-#Структура проекта
+# Структура проекта
 ### Проект организован следующим образом:
 
 ```
@@ -67,6 +67,7 @@ ctr_project/
 ├── requirements.txt         # Файл зависимостей
 └── README.md                # Описание проекта
 ```
-
-###Docker image: 
-`docker pull nickwild77/ctr_project_inference:main`
+### Docker image: 
+```
+docker pull nickwild77/ctr_project_inference:main
+```
