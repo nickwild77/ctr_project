@@ -13,57 +13,60 @@ Click-Through Rate (CTR) Prediction App
 - **Визуализация**: Генерация графиков и отчетов для наглядного представления результатов.
 - **Интеграция**: Поддержка интеграции с внешними API и базами данных.
 
-Project Organization
-------------
+## Установка
+- Клонирование репозитория:
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+```
+git clone https://github.com/nickwild77/ctr_project.git
+cd ctr_project
+```
+- Создание и активация виртуального окружения:
 
+```
+python -m venv .venv
+source .venv/bin/activate  # Для Windows используйте .venv\Scripts\activate
+```
+- Установка зависимостей:
+```
+pip install -r requirements.txt
+```
+## Использование
 
---------
+### Обучение модели:
 
+- Для запуска процесса обучения модели выполните следующую команду:
+```
+python train_pipeline.py --configs configs/train_config.yaml
+```
+### Тестирование:
 
-###Pull docker image: `docker pull nickwild77/ctr_project_inference:v1`
-###Docker hub: https://hub.docker.com/repository/docker/nickwild77/ctr_project_inference
+- Для запуска юнит-тестов используйте:
+```
+pytest
+```
+
+#Структура проекта
+### Проект организован следующим образом:
+
+```
+ctr_project/
+├── configs/                 # Конфигурационные файлы
+├── data/
+│   ├── raw/                 # Сырые данные
+│   └── processed/           # Обработанные данные
+├── models/                  # Сохраненные модели
+├── notebooks/               # Jupyter ноутбуки
+├── src/                     # Исходный код
+│   ├── data/                # Скрипты для загрузки данных
+│   ├── features/            # Скрипты для создания признаков
+│   ├── models/              # Скрипты для обучения и предсказания моделей
+│   └── visualization/       # Скрипты для визуализации
+├── tests/                   # Тесты
+├── Dockerfile               # Docker файл для контейнеризации
+├── docker-compose.yml       # Docker Compose файл
+├── requirements.txt         # Файл зависимостей
+└── README.md                # Описание проекта
+```
+
+###Docker image: 
+`docker pull nickwild77/ctr_project_inference:main`
