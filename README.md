@@ -45,7 +45,7 @@ python train_pipeline.py --configs configs/train_config.yaml
 pytest
 ```
 
-#Структура проекта
+# Структура проекта
 ### Проект организован следующим образом:
 
 ```
