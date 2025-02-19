@@ -10,14 +10,14 @@ if __name__ == '__main__':
     session = boto3.session.Session()
     s3_client = session.client(
         service_name='s3',
-        region_name='ru-msk',
+        region_name='ru-central1',
         aws_access_key_id=aws_access_key_id,
         aws_secret_access_key=aws_secret_access_key,
-        endpoint_url='https://hb.ru-msk.vkcs.cloud',
+        endpoint_url='https://storage.yandexcloud.net',
     )
 
     s3_client.download_file(
-        's3-ctr-testbucket',
-        'sampled_train_50k.csv',
-        '../../ctr_project/tests/sampled_train_50k.csv'
+        'ctr-project',
+        'data/sampled_train_50k.csv',
+        '../data/s3/sampled_train_50k.csv'
     )
