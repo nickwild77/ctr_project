@@ -1,4 +1,4 @@
-Click-Through Rate (CTR) Prediction App
+# Click-Through Rate (CTR) Prediction App
 
 Проект представляет собой инструмент для анализа и прогнозирования Click-Through Rate (CTR) 
 — показателя кликабельности, который широко используется в digital-маркетинге, рекламе и аналитике. 
@@ -67,7 +67,7 @@ ctr_project/
 ├── requirements.txt         # Файл зависимостей
 └── README.md                # Описание проекта
 ```
-### Docker image: 
+###  Docker image: 
 ```
-docker pull nickwild77/ctr_project_inference:main
+docker run -d nickwild77/ctr_project_inference:main
 ```
