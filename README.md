@@ -69,5 +69,5 @@ ctr_project/
 ```
 ###  Docker image: 
 ```
-docker pull nickwild77/ctr_project_inference:main
+docker run -d nickwild77/ctr_project_inference:main
 ```

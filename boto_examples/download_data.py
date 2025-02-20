@@ -2,7 +2,8 @@ import os
 import boto3
 from dotenv import load_dotenv
 
-if __name__ == '__main__':
+
+def download_data():
     load_dotenv()
     aws_access_key_id = os.environ.get('aws_access_key_id')
     aws_secret_access_key = os.environ.get('aws_secret_access_key')
@@ -19,5 +20,5 @@ if __name__ == '__main__':
     s3_client.download_file(
         'ctr-project',
         'data/sampled_train_50k.csv',
-        '../data/s3/sampled_train_50k.csv'
+        '/opt/airflow/dags/data/s3/sampled_train_50k.csv',
     )
